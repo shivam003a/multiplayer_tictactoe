@@ -84,9 +84,11 @@ io.on('connection', (socket) => {
         if (winner) {
             io.emit('game-over', { winner })
             resetGame()
+            io.emit('game-update', { gameState, currentPlayer })
         } else if (gameState.every(Boolean)) {
             io.emit('game-over', { winner: 'Draw' })
             resetGame()
+            io.emit('game-update', { gameState, currentPlayer })
         }
     })
 
